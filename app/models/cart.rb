@@ -5,7 +5,11 @@ class Cart < ApplicationRecord
   def add_product_to_cart(product)
     ci = cart_items.find_by(product: product)
     if !ci.blank?
-      ci.quantity += 1
+      if ci.quantity >= product.quantity
+        ci.quantity = product.quantity
+      else
+        ci.quantity += 1
+      end
     else
       ci = cart_items.build
       ci.product = product
