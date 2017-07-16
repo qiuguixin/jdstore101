@@ -15,7 +15,7 @@ class OrderMailer < ApplicationMailer
     mail(to: "admin@test.com" , subject: "[JDStore] 用户#{order.user.email}申请取消订单 #{order.token}")
   end
 
-  ddef notify_ship(order)
+  def notify_ship(order)
     @order        = order
     @user         = order.user
     @product_lists = @order.product_lists
